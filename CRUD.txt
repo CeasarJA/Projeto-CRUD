@@ -1,0 +1,43 @@
+
+let data = [];
+let nextId = 1; 
+
+
+function create(item) {
+    const newItem = {
+        id: nextId++,
+        ...item
+    };
+    data.push(newItem);
+    return newItem;
+}
+
+
+function readAll() {
+    return [...data]; 
+}
+
+
+function readById(id) {
+    return data.find(item => item.id === id) || null;
+}
+
+
+function update(id, updatedData) {
+    const index = data.findIndex(item => item.id === id);
+    if (index === -1) return null;
+
+    
+    data[index] = { ...data[index], ...updatedData };
+    return data[index];
+}
+
+
+function deleteById(id) {
+    const index = data.findIndex(item => item.id === id);
+    if (index === -1) return null;
+
+    const deletedItem = data[index];
+    data.splice(index, 1);
+    return deletedItem;
+}
